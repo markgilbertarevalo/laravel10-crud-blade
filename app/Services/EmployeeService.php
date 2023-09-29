@@ -12,11 +12,6 @@ class EmployeeService
     {
         DB::beginTransaction();
         try{
-            // $employee = new Employee;
-     
-            // $employee->first_name = $request->first_name;
-            // $employee->last_name = $request->last_name;
-            // $employee->position = $request->position;
             $employee = $this->preparedData($request, 0);
             $employee->save();
 
@@ -31,22 +26,16 @@ class EmployeeService
     {
         if($id === 0){
             $employee = new Employee;
-            
-            $employee->first_name = $request->first_name;
-            $employee->last_name = $request->last_name;
-            $employee->position = $request->position;
-
-            return $employee;
         }
         else{
             $employee = Employee::find($id);
- 
-            $employee->first_name = $request->first_name;
-            $employee->last_name = $request->last_name;
-            $employee->position = $request->position;
-
-            return $employee;
         }
+
+        $employee->first_name = $request->first_name;
+        $employee->last_name = $request->last_name;
+        $employee->position = $request->position;
+
+        return $employee;
     }
 
     public function update($request, $id)
