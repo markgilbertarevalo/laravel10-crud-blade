@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use App\Http\Requests\Employee\StoreEmployeeRequest;
+use App\Http\Requests\Employee\UpdateEmployeeRequest;
 use App\Services\EmployeeService;
 
 class EmployeeController extends Controller
@@ -57,18 +58,25 @@ class EmployeeController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     */
+     */     
     public function edit(Employee $employee)
     {
-        //
+        return view('employee.edit', compact('employee'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Employee $employee)
-    {
-        //
+    public function update(UpdateEmployeeRequest $request, $id, EmployeeService $employeeService)
+    {   
+        try{
+            $employeeService->update($request, $id);
+        
+            return redirect()->route('employee.index')
+                            ->with('success','Employee has been updated successfully.');
+        } catch (\Exception $e) {
+            dd($e);
+        }
     }
 
     /**

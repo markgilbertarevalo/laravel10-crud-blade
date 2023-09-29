@@ -10,23 +10,22 @@
  
 <div class="container mt-2">
  
-<div class="row">
+    <div class="row">
+        
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
                 <h2>CRUD</h2>
             </div>
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success">
+                    <p>{{ $message }}</p>
+                </div>
+            @endif
             <div class="pull-right mb-2">
-                <a class="btn btn-info" href="{{ route('employee.create') }}"> Create Employee</a>
+                <a class="btn btn-primary" href="{{ route('employee.create') }}"> Create Employee</a>
             </div>
         </div>
-    </div>
-    
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
-    @endif
-    
+    </div> 
     <table class="table table-bordered">
         <tr>
             <th>id</th>
@@ -44,7 +43,7 @@
             <td>
                 <form action="{{ route('employee.destroy',$employee->id) }}" method="Post">
      
-                    <a class="btn btn-primary" href="{{ route('employee.edit',$employee->id) }}">Edit</a>
+                    <a class="btn btn-warning" href="{{ route('employee.edit',$employee->id) }}">Edit</a>
     
                     @csrf
                     @method('DELETE')
