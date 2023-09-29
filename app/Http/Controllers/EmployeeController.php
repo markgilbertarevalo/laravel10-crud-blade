@@ -41,11 +41,7 @@ class EmployeeController extends Controller
 
         } catch (\Exception $e) {
             dd($e);
-        }
-        
- 
-      
-        
+        } 
     }
 
     /**
@@ -71,7 +67,6 @@ class EmployeeController extends Controller
     {   
         try{
             $employeeService->update($request, $id);
-        
             return redirect()->route('employee.index')
                             ->with('success','Employee has been updated successfully.');
         } catch (\Exception $e) {

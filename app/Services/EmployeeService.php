@@ -55,6 +55,8 @@ class EmployeeService
         try{
             $employee = $this->preparedData($request, $id);
             $employee->save();
+
+            DB::commit();
         } catch (\Exception $e){
             dd($e);
             DB::rollback();
