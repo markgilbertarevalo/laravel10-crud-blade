@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return Redirect::route('employee.index');
 });
 
 Route::resource('employee', App\Http\Controllers\EmployeeController::class);

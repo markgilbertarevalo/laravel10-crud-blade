@@ -26,7 +26,7 @@
             </div>
         </div>
     </div> 
-    <table class="table table-bordered">
+    <table class="table table-striped">
         <tr>
             <th>id</th>
             <th>First Name</th>
@@ -41,21 +41,21 @@
             <td>{{ $employee->last_name }}</td>
             <td>{{ $employee->position }}</td>
             <td>
-                <form action="{{ route('employee.destroy',$employee->id) }}" method="Post">
+                <form action="{{ route('employee.destroy', $employee->id) }}" method="Post">
      
-                    <a class="btn btn-warning" href="{{ route('employee.edit',$employee->id) }}">Edit</a>
+                    <a class="btn btn-warning" href="{{ route('employee.edit', $employee->id) }}">Edit</a>
     
                     @csrf
                     @method('DELETE')
        
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this Employee?');">Delete</button>
                 </form>
             </td>
         </tr>
         @endforeach
     </table>
    
-    {!! $employees->links() !!}
+    {{ $employees->links('pagination::bootstrap-5') }}
  
 </body>
 </html>
